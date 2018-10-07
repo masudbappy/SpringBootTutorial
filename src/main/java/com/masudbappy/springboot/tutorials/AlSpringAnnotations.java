@@ -58,5 +58,9 @@ public class Application {
         two object get connected from the spring container. Because one object is depend to other.
         So how we connect them? just simply use @Autowire. Then it will search the object for you from
         the spring container. If you not doing this then you will get NullPointer exception.
+        By default Autowire search by type like laptop
+        If we want to search by name then add @Qualifier("lap1")
+        Now it will search lap1
+
          */
 }
