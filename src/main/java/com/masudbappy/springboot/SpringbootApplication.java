@@ -14,5 +14,6 @@ public class SpringbootApplication {
 		Alien a = context.getBean(Alien.class);
 		a.show();
 
+
 	}
 }

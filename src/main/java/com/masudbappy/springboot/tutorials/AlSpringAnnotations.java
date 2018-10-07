@@ -24,5 +24,39 @@ public class Application {
 	}
 
 }
-     */
+
+    @Component
+    ==========
+    If we use this annotation over a class it means this is class which i want an object. When we call run it
+    will create the spring container for you and it will create one Object say for Alien a1 . It will create a A1 object
+    for you which type is Alien. The moment you say getBean(Alien.class) your spring framework will say okay developer wants
+    a bean of Alien. then it will check in the spring container that the bean is available or not which type is Alien. And if
+    found then it will say hey we do have a bean which type is Alien. It will get connected autometically.
+    That means spring framework is injecting this object in your application. That's what we say
+    dependency injection.
+
+    Question:
+    =========
+    What if i use getBean once more like if we create two objects??
+    Alien a = context.getBean(Alien.class);
+		a.show(); if we comment this two line we can see the "object is created."
+		because we have a constructor in the Alien class. Spring framework says hey
+		if don't want the object we will give it to you because by default speing uses a concept of singleton design pattern.
+		Which means it will give you the object pre hand you don't have to wait for the object creation. the moment you
+		start the application it will give you the object.
+		Alien a = context.getBean(Alien.class);
+		a.show();
+		Alien a1 = context.getBean(Alien.class);
+		a1.show();
+		if we call the above two lines two times?
+		It will created instance just one because by default spring uses the concept of Singleton.
+		And if we use prototype here. then you will get two object.
+
+		@Autowire
+		=========
+        If we declare a laptop object and use it in the Alien class then how this two
+        two object get connected from the spring container. Because one object is depend to other.
+        So how we connect them? just simply use @Autowire. Then it will search the object for you from
+        the spring container. If you not doing this then you will get NullPointer exception.
+         */
 }
