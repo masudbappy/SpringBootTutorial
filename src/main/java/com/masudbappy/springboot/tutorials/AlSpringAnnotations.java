@@ -31,7 +31,7 @@ public class Application {
     will create the spring container for you and it will create one Object say for Alien a1 . It will create a A1 object
     for you which type is Alien. The moment you say getBean(Alien.class) your spring framework will say okay developer wants
     a bean of Alien. then it will check in the spring container that the bean is available or not which type is Alien. And if
-    found then it will say hey we do have a bean which type is Alien. It will get connected autometically.
+    found then it will say hey we do have a bean which type is Alien. It will get connected automatically.
     That means spring framework is injecting this object in your application. That's what we say
     dependency injection.
 
