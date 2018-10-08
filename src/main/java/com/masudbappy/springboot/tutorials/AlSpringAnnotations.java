@@ -62,5 +62,40 @@ public class Application {
         If we want to search by name then add @Qualifier("lap1")
         Now it will search lap1
 
+        @Controller
+        ===========
+        @Controller annotation indicates that the annotated class is a controller. It is a specialization of
+         @Component and is autodetected through classpath scanning. It is typically used in combination with
+         annotated handler methods based on the @RequestMapping annotation. @RestController is a sibling convenience
+         annotation for creating Restful controllers.
+
+         Now whenever you get a request, your springboot application will make sure that this contrller will
+         handle all the requests and who is doing that? thanks to auto-configuration spring boot will do that for us.
+         we have a dispatcher-servlet behind the scene and that dispatcher-servlet send request to the controller.
+         But how you mapping. because there might be different requests. like we sent request for home or products or
+         contact us. I want different different pages for different different requests. So we need to specify
+         something call as ----
+        ->-> @RequestMapping
+         ===================
+         so you can mention for which request i want to handle this.@RequestMapping("home")
+
+         @RestController annotation returns the json from the method not HTML or JSP. It is the combination of
+          @Controller and @ResponseBody in one. The main purpose of @RestController is to create RESTful web services.
+           For returning html or jsp, simply annotated the controller class with @Controller.
+
+         @ResponseBody
+         =============
+         @ResponseBody is a Spring annotation which binds a method return value to the web response body. It is not
+          interpreted as a view name. It uses HTTP Message converters to convert the return value to HTTP response body,
+           based on the content-type in the request HTTP header
+           This response body says hey whatever you are returning is actually the data it's not the page name but data.
+           But i don't want to print a data right now i want page but unfortunately spring boot
+           does not support jsp so you need to add tomcat-jasper dependency.
+
+           To returning html page by default to your project you need to add spring-boot-starter-thymeleaf dependency.
+
+
+
+
          */
 }
