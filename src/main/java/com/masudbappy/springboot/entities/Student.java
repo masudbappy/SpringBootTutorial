@@ -10,6 +10,8 @@ public class Student {
     private int id;
     private String name;
     private String university;
+    @ManyToOne
+    private Department department;
 
     public Student() {
     }
@@ -36,5 +38,13 @@ public class Student {
 
     public void setUniversity(String university) {
         this.university = university;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
