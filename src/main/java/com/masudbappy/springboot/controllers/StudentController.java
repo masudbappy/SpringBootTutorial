@@ -5,9 +5,9 @@ import com.masudbappy.springboot.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class StudentController {
@@ -22,7 +22,30 @@ public class StudentController {
     @PostMapping(value = "/createStudent", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createStudent(@RequestBody Student student){
         student = this.studentService.save(student);
+
         return ResponseEntity.ok(student);
     }
+
+
+
+
+    @GetMapping(value = "/getAll")
+    public ResponseEntity getAllStudent(){
+
+        List<Student> list = this.studentService.getStudent();
+        System.out.println(list.toString());
+
+        return ResponseEntity.ok(list);
+    }
+
+
+
+    @DeleteMapping("/deleteStudent/{id}")
+    public ResponseEntity deleteStudent(@PathVariable("id") Long id){
+
+        this.studentService.deleteStudent(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
