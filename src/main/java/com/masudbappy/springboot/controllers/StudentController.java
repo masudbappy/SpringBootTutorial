@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/student")
 public class StudentController {
 
    private final StudentService studentService;
@@ -19,7 +20,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping(value = "/createStudent", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createStudent(@RequestBody Student student){
         student = this.studentService.save(student);
 

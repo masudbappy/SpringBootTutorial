@@ -4,24 +4,16 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Department {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Department extends BaseEntity {
+
+
     private String name;
-    @OneToMany
+    @OneToMany(mappedBy = "department")
     List<Student> students;
 
     public Department() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

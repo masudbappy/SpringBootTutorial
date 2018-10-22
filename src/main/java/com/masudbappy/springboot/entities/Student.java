@@ -3,26 +3,13 @@ package com.masudbappy.springboot.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="studentTable")
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@Table
+public class Student extends BaseEntity{
+
     private String name;
     private String university;
     @ManyToOne
     private Department department;
-
-    public Student() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
