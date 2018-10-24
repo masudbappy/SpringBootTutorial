@@ -51,8 +51,8 @@ public class StudentController {
     public ResponseEntity getStudent(@PathVariable("id") Long id) throws
             StudentNotFoundException {
 
-        //this.studentService.getStudent(id);
-        return ResponseEntity.ok(this.studentService.getStudent(id));
+         Student student= this.studentService.getStudent(id);
+        return ResponseEntity.ok(student);
 
     }
 }

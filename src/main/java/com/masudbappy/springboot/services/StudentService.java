@@ -44,16 +44,34 @@ public class StudentService {
 
     public Student getStudent(Long id) throws StudentNotFoundException {
 
-        Student s;
-        if (id == 0) throw new IllegalArgumentException("Id can't be null");
+        Optional<Student> studentOne;
+        if (id == null)
+            throw new IllegalArgumentException("Id can't be null");
 
-        else {
-            s = studentRepository.findByID(id);
-            if (s == null) {
+        studentOne = studentRepository.findById(id);
 
-                throw new StudentNotFoundException("this id is not Found in DB");
-            }
+        if (studentOne == null) {
+
+            throw new StudentNotFoundException("this id is not Found in DB");
         }
+
+        return studentOne.get();
+    }
+
+
+    public Student getStudentByQuery(Long id) throws StudentNotFoundException {
+
+        Student s;
+        Optional<Student> studentOne;
+        if (id == null)
+            throw new IllegalArgumentException("Id can't be null");
+
+        s = studentRepository.findByID(id);
+        if (s == null) {
+
+            throw new StudentNotFoundException("this id is not Found in DB");
+        }
+
         return s;
     }
 
