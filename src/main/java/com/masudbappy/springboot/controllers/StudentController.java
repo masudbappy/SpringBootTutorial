@@ -1,8 +1,10 @@
 package com.masudbappy.springboot.controllers;
 
 import com.masudbappy.springboot.entities.Student;
+import com.masudbappy.springboot.exceptions.notfound.StudentNotFoundException;
 import com.masudbappy.springboot.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +29,15 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
-
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateStudent(@PathVariable("id") Long id,
+                                        @RequestBody Student student){
+        if (student == null)
+            return ResponseEntity.badRequest().build();
+        student.setId(id);
+        student = this.studentService.save(student);
+        return ResponseEntity.ok(student);
+    }
 
 
     @GetMapping(value = "/getAll")
@@ -48,5 +58,10 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping(value = "/{name}")
+    public ResponseEntity getStudentByName(@PathVariable("name") String name) throws StudentNotFoundException {
+        Student student = this.studentService.findByStudentName(name);
+        return ResponseEntity.ok(student);
+    }
 
 }

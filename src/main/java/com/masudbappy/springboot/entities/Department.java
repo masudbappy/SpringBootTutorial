@@ -10,7 +10,8 @@ public class Department extends BaseEntity {
 
 
     private String name;
-    @OneToMany(mappedBy = "department")
+    @JsonIgnore
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
     List<Student> students;
 
     public Department() {
