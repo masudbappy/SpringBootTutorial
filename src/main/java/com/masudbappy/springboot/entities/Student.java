@@ -11,6 +11,10 @@ public class Student extends BaseEntity{
     @ManyToOne
     private Department department;
 
+    public Student(){
+
+    }
+
     public String getName() {
         return name;
     }
