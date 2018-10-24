@@ -1,6 +1,7 @@
 package com.masudbappy.springboot.controllers;
 
 import com.masudbappy.springboot.entities.Student;
+import com.masudbappy.springboot.exceptions.notfound.StudentNotFoundException;
 import com.masudbappy.springboot.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 
-   private final StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
@@ -21,17 +22,15 @@ public class StudentController {
     }
 
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createStudent(@RequestBody Student student){
+    public ResponseEntity createStudent(@RequestBody Student student) {
         student = this.studentService.save(student);
 
         return ResponseEntity.ok(student);
     }
 
 
-
-
     @GetMapping(value = "/getAll")
-    public ResponseEntity getAllStudent(){
+    public ResponseEntity getAllStudent() {
 
         List<Student> list = this.studentService.getStudent();
         System.out.println(list.toString());
@@ -40,13 +39,20 @@ public class StudentController {
     }
 
 
-
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteStudent(@PathVariable("id") Long id){
+    public ResponseEntity deleteStudent(@PathVariable("id") Long id) {
 
         this.studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }
 
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity getStudent(@PathVariable("id") Long id) throws
+            StudentNotFoundException {
+
+        //this.studentService.getStudent(id);
+        return ResponseEntity.ok(this.studentService.getStudent(id));
+
+    }
 }
