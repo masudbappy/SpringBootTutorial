@@ -29,9 +29,14 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
-    public ResponseEntity updateStudent(){
-
-        return ResponseEntity.ok();
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateStudent(@PathVariable("id") Long id,
+                                        @RequestBody Student student){
+        if (student == null)
+            return ResponseEntity.badRequest().build();
+        student.setId(id);
+        student = this.studentService.save(student);
+        return ResponseEntity.ok(student);
     }
 
 
