@@ -32,7 +32,7 @@ public class StudentController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateStudent(@PathVariable("id") Long id,
-                                        @RequestBody Student student){
+                                        @RequestBody Student student) {
         if (student == null)
             return ResponseEntity.badRequest().build();
         student.setId(id);
@@ -64,11 +64,11 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/find/{id}")
     public ResponseEntity getStudent(@PathVariable("id") Long id) throws
             StudentNotFoundException {
 
-         Student student= this.studentService.getStudent(id);
+        Student student = this.studentService.getStudent(id);
         return ResponseEntity.ok(student);
 
     }
