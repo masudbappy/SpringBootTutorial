@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -49,5 +50,38 @@ public class StudentService {
         return student;
     }
 
+
+    public Student getStudent(Long id) throws StudentNotFoundException {
+
+        Optional<Student> studentOne;
+        if (id == null)
+            throw new IllegalArgumentException("Id can't be null");
+
+        studentOne = studentRepository.findById(id);
+
+        if (studentOne == null) {
+
+            throw new StudentNotFoundException("this id is not Found in DB");
+        }
+
+        return studentOne.get();
+    }
+
+
+    public Student getStudentByQuery(Long id) throws StudentNotFoundException {
+
+        Student s;
+        Optional<Student> studentOne;
+        if (id == null)
+            throw new IllegalArgumentException("Id can't be null");
+
+        s = studentRepository.findByID(id);
+        if (s == null) {
+
+            throw new StudentNotFoundException("this id is not Found in DB");
+        }
+
+        return s;
+    }
 
 }
