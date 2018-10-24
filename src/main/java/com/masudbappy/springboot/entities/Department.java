@@ -1,5 +1,7 @@
 package com.masudbappy.springboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,7 +10,8 @@ public class Department extends BaseEntity {
 
 
     private String name;
-    @OneToMany(mappedBy = "department")
+    @JsonIgnore
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
     List<Student> students;
 
     public Department() {
