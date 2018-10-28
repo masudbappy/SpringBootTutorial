@@ -80,6 +80,28 @@ public class SpringDataJPA {
     Concepts that you learn from Spring Data JPA are going to be similar if you need to work with of these alternate
     Spring Data implementations, since each of these project adhere to the core Spring Data Commons interfaces and contracts.
 
+    Spring Repositories
+    ========================
+    Spring has supported the concept of a repository for some time now. Repository is one of Spring's core stereotypes
+    and you should plan on using them in your data access layer regardless of your chosen data access layer API and
+    framework. The repository's whole point is to define a contract that your data access layer will implement. This
+    contract or interface can then be included and bound to by client code that needs to access data in some fashion.
+    What this really means is that a Spring repository is essentially the Data Access Object pattern or DAO pattern. By
+    defining an interface that the surface code uses, the data access layer is free to implement the DAO contract anyway
+    that makes the most sense to be successful. That may mean that when you started your project you implemented your
+    data access layer with JPA. Maybe at some point later in the project, you needed to replace that implementation with
+    the JDBC implementation instead of JPA. When you switch the interface implementation out, the client service code
+    didn't even notice or care that anything changed implementation-wise in your data access layer. And who knows, maybe
+    at some point in the future, you'll need to switch out your JDBC implementation with something else. This pattern
+    allows you to set up hybrid data access layers like we talked about in module one of this course. Your
+    implementation may actually do some operations using JPA while utilizing JDBC for other operations. The purest
+    definition of a DAO pattern would say that you need to define a contract with an interface. Spring repositories
+    however don't necessarily need to be an interface. In our sample project, you may have noticed that we have classes
+    with the @Repository annotation on them. In this case, we're still following the DAO pattern to a point because any
+    method or attribute that you set up as public scope becomes your DAO contract. You can then still choose your
+    implementation details for your public methods, you just need to make sure to keep the scope private or protected.
+    Most of the time this is sufficient for most data access layers.
+
 
 */
 
