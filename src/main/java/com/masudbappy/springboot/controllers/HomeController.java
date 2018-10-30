@@ -1,13 +1,13 @@
 package com.masudbappy.springboot.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+//@Controller
 //@ResponseBody it just return data not html page.
+@RestController
+@RequestMapping("rest/hello")
 public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -16,5 +16,10 @@ public class HomeController {
         mv.addObject("name",name);
         mv.setViewName("home");
         return mv;
+    }
+
+    @GetMapping
+    public String hello(){
+        return "hello world";
     }
 }
